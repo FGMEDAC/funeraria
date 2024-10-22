@@ -14,10 +14,10 @@ import static java.sql.DriverManager.*;
  */
 
 public class ConexionMySQL {
-    private String BD;
-    private String USUARIO;
-    private String PASS;
-    private String HOST;
+    private final String BD;
+    private final String USUARIO;
+    private final String PASS;
+    private final String HOST;
 
     Calendar now;
     TimeZone zonaHoraria;
