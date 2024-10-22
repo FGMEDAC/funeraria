@@ -39,15 +39,6 @@ private static final String URL_CONEXION = "jdbc:mysql://localhost:3306/funerari
                 System.out.println(e.getMessage());
             }
             
-            while (rs.next()) {
-                    String id = rs.getString("ID");
-                    String usr = rs.getString("USERNAME");
-                    String psw = rs.getString("PASSWORD");
-                    String nombre = rs.getString("NOMBRE");
-                    System.out.println("userid : " + id);
-                    System.out.println("usr : " + usr);
-                    System.out.println("psw : " + psw);
-                    System.out.println("nombre : " + nombre);
-                }
+            
     } 
 }
