@@ -5,26 +5,35 @@ import java.util.*;
 import Controller.ConexionMySQL;
 
 public class main {
-    Scanner sc = new Scanner (System.in);
-    ConexionMySQL conexion = new ConexionMySQL("root", "MEDAC", "funeraria");
+    public static Scanner sc = new Scanner (System.in);
+    public static ConexionMySQL conexion = new ConexionMySQL("root", "MEDAC", "funeraria");
     
-    public static void main(String[] args) {
-        System.out.println("1. Conectar a la base de datos 2. Insertar 3. Update 4. Borrado 5. Consultas 6. Cerrar conexion ");
+    public static void main(String[] args) throws SQLException {
+        System.out.println("1. Conectar a la base de datos 2. Insertar o Update o Borrado 3. Consultas 4. Cerrar conexion ");
         int res = sc.nextInt();
+        boolean a = true;
         
-        switch (res){
+        do {
+            switch (res){
             case 1:
-                
+                conexion.conectar();
+                conexion.comprobarConexion();
+                System.out.println("Se ha conectado a la base de datos");
+                break;
             case 2: 
-                
+                System.out.println("Introduce lo que quieres hacer");
+                String consulta = sc.nextLine();
+                conexion.ejecutarInsertDeleteUpdate(consulta);
+                break;
             case 3:
                 
+                break;
             case 4:
-                
-            case 5: 
-                
-            case 6:
+             
+                break;
         }
+        } while (a = false);
+        
         
     }
 }

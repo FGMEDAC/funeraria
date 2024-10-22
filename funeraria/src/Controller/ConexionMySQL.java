@@ -31,7 +31,7 @@ public class ConexionMySQL {
         connection = null;
     }
 
-    private void registrarDriver() throws SQLException{
+    public void registrarDriver() throws SQLException{
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
         }catch(ClassNotFoundException e){
