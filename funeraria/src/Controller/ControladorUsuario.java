@@ -1,15 +1,11 @@
-package Controlador;
-import Modelo.Historial;
-import Modelo.Usuario;
+package Controller;
 
-import javax.swing.*;
+import Model.Cliente;
+
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.io.*;
 
 public class ControladorUsuario {
-    private ConexionMySQL conexion;
+    private final ConexionMySQL conexion;
     Connection connection = null;
 
     public ControladorUsuario(ConexionMySQL conexion) {
@@ -17,19 +13,19 @@ public class ControladorUsuario {
         connection = conexion.connection;
     }
 
-    public boolean comprobarUsuario(String usuario, String password) throws SQLException {
-        String consulta = "SELECT * FROM users WHERE usuario = '" + usuario + "' AND password = '" + password + "'";
+    public boolean comprobarUsuario(String usuario) throws SQLException {
+        String consulta = "SELECT * FROM users WHERE usuario = '" + usuario + "'";
         Statement stmt = connection.createStatement();
         ResultSet rset = stmt.executeQuery(consulta);
         return rset.next();
     }
 
-    public Usuario obtenerUsuario(String usuario) throws SQLException {
+    public Cliente obtenerUsuario(String usuario) throws SQLException {
         String consulta = "SELECT * FROM users WHERE usuario = '" + usuario + "'";
         Statement stmt = connection.createStatement();
         ResultSet rset = stmt.executeQuery(consulta);
         if (rset.next()) {
-            return new Usuario(rset.getString("nombre"), rset.getString("apellidos"), rset.getString("usuario"), rset.getString("password"), rset.getFloat("saldo"), rset.getInt("id"));
+            return new Cliente(rset.getString("nombre"), rset.getString("telefono"), rset.getString("email"), rset.getString("direccion"), rset.getInt("id"));
         }
         return null;
     }
@@ -38,7 +34,7 @@ public class ControladorUsuario {
         conexion.desconectar();
     }
 
-    public ArrayList<Usuario> obtenerTodosUsuarios() {
+   /* public ArrayList<Usuario> obtenerTodosUsuarios() {
         ArrayList<Usuario> lista = new ArrayList<Usuario>();
         String consulta = "SELECT * FROM users";
         try {
@@ -59,7 +55,8 @@ public class ControladorUsuario {
         }
         return lista;
     }
-
+*/
+  /*
     public void pagar(String usuarioEnviador, String usuarioReceptor, int num) {
         try {
             Usuario u1 = obtenerUsuario(usuarioEnviador);
@@ -105,7 +102,8 @@ public class ControladorUsuario {
             throw new RuntimeException(e);
         }
     }
-
+*/
+    /*
     public float obtenerSaldo(String usuario) {
         try {
             Usuario u = obtenerUsuario(usuario);
@@ -135,7 +133,7 @@ public class ControladorUsuario {
         }
         return lista;
     }
-
+/*
     public void updateHistory(String usuario, String accion, double cantidad) {
         try {
             Usuario u = obtenerUsuario(usuario);
@@ -150,6 +148,7 @@ public class ControladorUsuario {
             throw new RuntimeException(e);
         }
     }
+
 
     public void exportarHistorial(Usuario usuario, String absolutePath) {
 
@@ -178,5 +177,6 @@ public class ControladorUsuario {
             throw new RuntimeException(e);
         }
     }
+    */
 }
 
